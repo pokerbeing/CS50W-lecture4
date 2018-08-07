@@ -10,6 +10,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 def main():
+
+    passenger = Passenger(name="Larry", flight_id=1)
+    db.session.add(passenger)
+    db.session.commit()
+    
+    
+    
     # Equivalent to the SQL SELECT * command
     flights = Flight.query.filter_by(origin="Paris").all()
     for flight in flights:
@@ -53,7 +60,17 @@ def main():
     for flight in flights:
         print(f"{flight.origin} to {flight.destination}, {flight.duration} minutes.")
 
-        
+    print("\n compound boolean expression or_")
+    flights = Flight.query.filter(or_(Flight.origin == "Paris",
+             Flight.duration > 500)).all()
+    for flight in flights:
+        print(f"{flight.origin} to {flight.destination}, {flight.duration} minutes.")
+
+    print("\n JOIN")
+    query = (db.session.query(Flight, Passenger).filter(Flight.id == Passenger.flight_id).all())
+    for each in query:
+        print(f"{flight.origin} {flight.destination} {passenger.name}")
+
 if __name__ == "__main__":
     with app.app_context():
         main()
