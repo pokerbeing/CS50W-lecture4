@@ -9,6 +9,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 def main():
+    # Equivalent to the SQL SELECT * command
     flights = Flight.query.all()
     for flight in flights:
         print(f"{flight.origin} to {flight.destination}, {flight.duration} minutes.")
