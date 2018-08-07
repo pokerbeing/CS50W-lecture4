@@ -1,5 +1,5 @@
 class Flight:
-
+    # Counter is a Class variable
     counter = 1
 
     def __init__(self, origin, destination, duration):
@@ -17,6 +17,7 @@ class Flight:
         self.duration = duration
 
     def print_info(self):
+        """ Method for printing specific attributes of flight object """
         print(f"Flight origin: {self.origin}")
         print(f"Flight destination: {self.destination}")
         print(f"Flight duration: {self.duration}")
@@ -52,10 +53,12 @@ def main():
     # Create passengers.
     alice = Passenger(name="Alice")
     bob = Passenger(name="Bob")
+    larry = Passenger("Larry")
 
     # Add passengers.
     f1.add_passenger(alice)
     f1.add_passenger(bob)
+    f1.add_passenger(larry)
 
     f1.print_info()
 
