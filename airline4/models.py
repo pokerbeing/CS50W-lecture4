@@ -12,6 +12,7 @@ class Flight(db.Model):
     origin = db.Column(db.String, nullable=False)
     destination = db.Column(db.String, nullable=False)
     duration = db.Column(db.Integer, nullable=False)
+    # Sets up passengers as a related record
     passengers = db.relationship("Passenger", backref="flight", lazy=True)
 
     def add_passenger(self, name):
